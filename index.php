@@ -1,17 +1,58 @@
 <?php
-$product = [
-    'name' => 'Футболка',
-    'price' => 1000,
-    'stock' => 5
+
+$tasks = [
+    'побриться',
+    'позавтракать',
+    'прогреть авто',
+    'зарядить смартфон',
+    'проверить почту',
 ];
 
-$priceThreshold = 1500;
-$discountRate = 10;
+$tasks_with_priority = [
+    [
+        'title' =>'побриться',
+        'priority' => 2
+    ],
+    [
+        'title' =>'позавтракать',
+        'priority' => 3
+    ],
+    [
+        'title' =>'прогреть авто',
+        'priority' => 2
+    ],
+    [
+        'title' =>'зарядить смартфон',
+        'priority' => 3
+    ],
+    [
+        'title' =>'проверить почту',
+        'priority' => 1
+    ],
+];
 
-if ($product['stock'] > 0 && $product['price'] < $priceThreshold) {
-    $discountAmount = ($product['price'] * $discountRate) / 100;
-    $finalPrice = $product['price'] - $discountAmount;
-    echo "Товар {$product['name']} (оригинальная цена: {$product['price']} руб.) доступен для заказа. Ваша цена со скидкой: {$finalPrice} руб.";
-}else{
-    echo "Товара нет в наличии или он слишком дорогой";
-}
+?>
+<ul>
+    <?php foreach ($tasks as $task):?>
+        <li><?=$task?></li>
+    <?php endforeach;?>
+</ul>
+
+<table>
+    <tr><th>Задача</th><th>Приоритет</th></tr>
+    <?php foreach ($tasks_with_priority as $task):?>
+    <tr>
+        <td><?=$task['title']?></td>
+        <?php
+        $priority_map = [
+            1 => 'Низкий',
+            2 => 'Средний',
+            3 => 'Высокий'
+        ];
+
+        $priority = $priority_map[$task['priority']] ?? 'Без приоритета';
+        ?>
+        <td><?=$priority?></td>
+    </tr>
+    <?php endforeach;?>
+</table>
