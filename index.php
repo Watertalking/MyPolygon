@@ -24,4 +24,3 @@ function formatUserData($name, $email): array
     ];
 }
 
-var_dump(formatUserData("вЛАДИМИР", "TEST@MAIL.RU"));
